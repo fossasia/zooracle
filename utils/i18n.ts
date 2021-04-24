@@ -10,6 +10,13 @@ import {
 i18n.loadLocaleData('en', { plurals: en })
 i18n.loadLocaleData('hi', { plurals: hi })
 
+// Supported locales
+export const supportedLocales = ['en', 'hi']
+
+export function isValidLocale(locale: string): boolean {
+  return supportedLocales.includes(locale)
+}
+
 /**
  * Load messages for requested locale and activate it.
  * This function isn't part of the LinguiJS library because there're
@@ -28,11 +35,19 @@ export async function activateAndSetCookie(locale: string): Promise<void> {
 
 export async function detectAndSetLocale(): Promise<void> {
   const DEFAULT_FALLBACK = () => 'en'
-  const locale = detect(
+  let detectedLocale = detect(
     fromUrl('lang'),
     fromCookie('current_locale'),
     fromNavigator(),
     DEFAULT_FALLBACK
   )
+
+  if (!isValidLocale(detectedLocale)) {
+    detectedLocale = detectedLocale.split('-')[0]
+  }
+
+  const locale = isValidLocale(detectedLocale)
+    ? detectedLocale
+    : DEFAULT_FALLBACK()
   await activateAndSetCookie(locale)
 }
