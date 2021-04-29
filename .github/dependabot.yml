@@ -1,0 +1,21 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "21:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@types/node"
+    versions:
+    - 15.0.0
+  - dependency-name: "@sentry/integrations"
+    versions:
+    - 6.3.1
+  - dependency-name: "@sentry/browser"
+    versions:
+    - 6.3.1
+  - dependency-name: "@lingui/cli"
+    versions:
+    - 3.8.10
