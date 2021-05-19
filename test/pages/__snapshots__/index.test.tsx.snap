@@ -27,6 +27,29 @@ exports[`Home page matches snapshot 1`] = `
       <button>
         Hindi
       </button>
+      <div>
+        <p>
+          LOCAL : Apr, 04, 2020 04:00 PM
+        </p>
+        <p>
+          SGT : Apr, 05, 2020 12:00 AM
+        </p>
+        <select
+          id="cars"
+          name="timezone"
+        >
+          <option
+            value="Asia/Calcutta"
+          >
+            Asia/Calcutta
+          </option>
+          <option
+            value="Asia/Singapore"
+          >
+            Asia/Singapore
+          </option>
+        </select>
+      </div>
       <p
         class="description"
       >

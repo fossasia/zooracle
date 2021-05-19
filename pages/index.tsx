@@ -12,8 +12,17 @@ import {
 import styles from '../styles/Home.module.css'
 import { activateAndSetCookie } from '../utils/i18n'
 import { Trans } from '@lingui/macro'
+import dayjs from 'dayjs'
+import { useTimezone } from '../store/useTimezone'
 
 export default function Home(): JSX.Element {
+  const localTimezone = useTimezone((state) => state.localTimezone)
+  const defaultTimezone = useTimezone((state) => state.defaultTimezone)
+  const setTimezone = useTimezone((state) => state.setTimezone)
+  const handleTimeZone = (e: any) => {
+    setTimezone(e.target.value)
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -32,6 +41,24 @@ export default function Home(): JSX.Element {
         </p>
         <button onClick={() => activateAndSetCookie('en')}>English</button>
         <button onClick={() => activateAndSetCookie('hi')}>Hindi</button>
+        <div>
+          <p>
+            LOCAL :{' '}
+            {dayjs('2020-04-04T16:00:00.000Z')
+              .tz(localTimezone)
+              .format('MMM, DD, YYYY hh:mm A')}
+          </p>
+          <p>
+            SGT :{' '}
+            {dayjs('2020-04-04T16:00:00.000Z')
+              .tz(defaultTimezone)
+              .format('MMM, DD, YYYY hh:mm A')}
+          </p>
+          <select name="timezone" id="cars" onClick={handleTimeZone}>
+            <option value="Asia/Calcutta">Asia/Calcutta</option>
+            <option value="Asia/Singapore">Asia/Singapore</option>
+          </select>
+        </div>
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
