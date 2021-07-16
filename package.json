@@ -47,7 +47,7 @@
     "@lingui/macro": "^3.8.10",
     "@testing-library/react": "^11.2.5",
     "@types/jest": "^26.0.20",
-    "@types/node": "^14.14.39",
+    "@types/node": "^16.3.3",
     "@types/react": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
